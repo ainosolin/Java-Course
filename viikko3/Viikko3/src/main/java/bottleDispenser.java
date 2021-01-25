@@ -35,18 +35,17 @@ public class BottleDispenser {
     public void buyBottle() {
         
         Bottle bottle1 = new Bottle();
+        double hinta = bottle1.getPrice();
         
-        if (money == 0){
-            money = 0;
+        if (money < hinta){
             System.out.println("Add money first!");
         }
         else if (bottles < 0){
-            bottles = 0;
             System.out.println("No bottles left, cannot buy bottles.");
         }
         else {
             bottles -= 1;
-            money -= 1;
+            money -= hinta;
             System.out.println("KACHUNK! " +  bottle1.getName() + " came out of"
                     + " the dispenser!");
             
