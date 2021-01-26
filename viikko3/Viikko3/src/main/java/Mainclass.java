@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,28 +18,55 @@ public class Mainclass {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
-
+        
     BottleDispenser bottledisp = new BottleDispenser();
-
-    bottledisp.addMoney(); /* money = 1 */
-    bottledisp.buyBottle(); /* money = 0 */
-
-    /* pullo tulee maatista */
-
-    bottledisp.buyBottle(); /* money = 0, bottle = 4 */
-
-    /* if lause herjaa "Add money first!" */
-
-    bottledisp.addMoney(); /* money = 1 */
-    bottledisp.addMoney(); /* money = 2 */
-    bottledisp.buyBottle(); /* bottle = 3 */
     
-    /* pullo tulee maatista */
-    
-    bottledisp.returnMoney(); 
-    
-    /* palauta rahat */
+    Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n*** BOTTLE DISPENSER ***\n" +
+                    "1) Add money to the machine\n" +
+                    "2) Buy a bottle\n" +
+                    "3) Take money out\n" +
+                    "4) List bottles in the dispenser\n" +
+                    "0) End");
+            System.out.print("Your choice: ");
+            int choice = scanner.nextInt();
+            
+            switch (choice) {
+                case 1:
+                    {
+                        bottledisp.addMoney();
+                        break;  
+                    }
+                case 2:
+                    {
+                        bottledisp.buyBottle();
+                        break;
+                    }
+                case 3:
+                    {
+                        bottledisp.returnMoney();
+                        break;
+                    }
+                case 4:
+                    {
+                        bottledisp.listBottles();
+                        break;
+                    }
+                case 0:
+                    {
+                        System.out.println("Happy to be of service!");
+                        System.exit(0);
+                        break;
+                    }
+                default:
+                    System.out.println("Could not recognize selection, please "
+                            + "try again.");
+                    break;
+            }
+        }
+
     
     }
     
