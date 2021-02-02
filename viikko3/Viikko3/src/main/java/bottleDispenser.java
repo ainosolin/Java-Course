@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class BottleDispenser {
     private int bottles;
-    private int money;
+    private double money;
     ArrayList<Bottle> bottleList;
     
     public BottleDispenser() {
@@ -21,12 +21,23 @@ public class BottleDispenser {
         money = 0;
         bottleList = new ArrayList<>(); 
         
-        // Add Bottle-objects to the array
+        /* Add Bottle-objects to the array
         for(int i = 0; i < bottles; i++) {
             // Use the default constructor to create new Bottles
             Bottle temp = new Bottle();
             bottleList.add(temp);
         }
+        */
+        
+        bottleList.add(new Bottle("Pepsi Max", "Pepsi", 0.3, 0.5, 1.8));
+        bottleList.add(new Bottle("Pepsi Max", "Pepsi", 0.9, 1.5, 2.2));
+        bottleList.add(new Bottle("Coca-Cola Zero", "Coca-Cola", 0.3, 0.5, 2.0));
+        bottleList.add(new Bottle("Coca-Cola Zero", "Coca-Cola", 0.9, 1.5, 2.5));
+        bottleList.add(new Bottle("Fanta Zero", "Coca-Cola", 0.3, 0.5, 1.95));
+        //bottleList.add(new Bottle("Pepsi Max", "Pepsi", 0.3, 0.5, 1.8));
+        //bottleList.add(new Bottle("Pepsi Max", "Pepsi", 0.3, 0.5, 1.8));
+        
+        
     }
     
     public void addMoney() {
@@ -34,30 +45,28 @@ public class BottleDispenser {
         System.out.println("Klink! Added more money!");
     }
     
-    public Bottle buyBottle() {
+    public Bottle buyBottle(int indeksi) {
         
-        int koko = bottleList.size();
-        
-        Bottle bottle1 = bottleList.get(koko-1);
-        
+        Bottle bottle1 = bottleList.get(indeksi);
+
         /* buybottle ottaa sisäänsä pullon indeksin mitä käyttää hakemaan 
            pullon indeksi pääclassissa kysäistä käyttäjältä numero
            buybottle aliohjelmassa pitää tarkastaa että pullo x on olemassa,
            pikkaisen muokattu ehtorakenne
            erilaiset pullot, uusia pulloja listalle, määrittää pulloille eri 
-            tyypit, esim setfunktiot pulloluokkaan jotta pystyy asettaa pulloille
-            arvoja. Rakentajaan laita paramtertit jolloin pulloista saa oikean tyyppiset.
+           tyypit, esim setfunktiot pulloluokkaan jotta pystyy asettaa pulloille
+           arvoja. Rakentajaan laita paramtertit jolloin pulloista saa oikean tyyppiset.
         */
         
         double hinta = bottle1.getPrice();
-        
+
         if (money < hinta){
             System.out.println("Add money first!");
         }
-        else if (koko < 0){
+        else if (bottleList.size() < 0){
             System.out.println("No bottles left, cannot buy bottles.");
         }
-        else {
+        else{
             money -= hinta;
             System.out.println("KACHUNK! " +  bottle1.getName() + " came out of"
                     + " the dispenser!");
@@ -67,16 +76,17 @@ public class BottleDispenser {
     }
     
     public void returnMoney() {
-        money = 0;
-        System.out.println("Klink klink. Money came out!");
+        String m = String.format("%.2f", money);
+        System.out.println("Klink klink. Money came out! You got " + m + "€ back");
     }
     
     public ArrayList<Bottle> listBottles(){
         Integer indeksi = 0;
         for (Bottle bottle : bottleList){
             indeksi ++;
-            System.out.println(indeksi.toString() + ". " + " Name: " + bottle.getName()+
-                    "." + " Price: " + bottle.getPrice()+ " Size: " + bottle.getSize());
+            System.out.println(indeksi.toString() + "." + " Name: " 
+                    + bottle.getName() +"\n\tSize: " + bottle.getSize()+ 
+                    "\tPrice: " + bottle.getPrice());
         }
         return bottleList;
     }

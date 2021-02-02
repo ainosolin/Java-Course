@@ -16,8 +16,14 @@ public class Bottle {
     private double bottle_price = 1.8;
     
     public Bottle(){}
-    public Bottle(String name, String manuf, float totE, float bottle_size,
-            float bottle_price){}
+    public Bottle(String name, String manuf, double totE, double bosize,
+            double boprice){
+        this.name = name;
+        this.manufacturer = manuf;
+        this.total_energy = totE;
+        this.bottle_size = bosize;
+        this.bottle_price = boprice;
+    }
     
     public String getName(){
         return name;

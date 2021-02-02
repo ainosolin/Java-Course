@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 /*
@@ -30,7 +29,9 @@ public class Mainclass {
                     "3) Take money out\n" +
                     "4) List bottles in the dispenser\n" +
                     "0) End");
+            
             System.out.print("Your choice: ");
+            
             int choice = scanner.nextInt();
             
             switch (choice) {
@@ -41,7 +42,10 @@ public class Mainclass {
                     }
                 case 2:
                     {
-                        bottledisp.buyBottle();
+                        bottledisp.listBottles();
+                        System.out.print("Your choice: ");
+                        int valinta = scanner.nextInt();
+                        bottledisp.buyBottle(valinta-1);
                         break;
                     }
                 case 3:
@@ -56,7 +60,6 @@ public class Mainclass {
                     }
                 case 0:
                     {
-                        System.out.println("Happy to be of service!");
                         System.exit(0);
                         break;
                     }
