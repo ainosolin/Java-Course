@@ -31,7 +31,9 @@ public class Mainclass {
         Path path = Paths.get(pathName);
         
         ReadAndWriteIO lukija = new ReadAndWriteIO();
-        lukija.ReadFile(path);
+        // Tehtävä 1: lukija.ReadFile(path);
+        // Tehtävä 2: 
+        lukija.ReadAndWrite("asd.txt", "output.txt");
     }
     
 }
