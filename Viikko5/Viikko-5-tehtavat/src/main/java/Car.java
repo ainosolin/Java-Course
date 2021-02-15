@@ -19,10 +19,7 @@ class Car {
   private String Model = "Hyundai";
   int numberofWheels = 4;
   ArrayList<String> carParts;
-  private String Body;
-  private String Chassis;
-  private String Wheel;
-  private String Engine;
+
 
   public Car () {
       carParts = new ArrayList<>();
