@@ -59,7 +59,7 @@ Repository will contain the weekly exercises plus possibly the group assignment,
 This section lists all tools used.
 * [NetBeans 12.2](https://netbeans.apache.org/)
 * [AndroidStudio 4.1.2](https://developer.android.com/studio)
-* [Umbrello] (https://umbrello.kde.org/)
+* [Umbrello](https://umbrello.kde.org/)
 
 <!-- LICENSE -->
 ## License
