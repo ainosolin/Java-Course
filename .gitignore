@@ -6,17 +6,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-/viikko3/Viikko3/target/
-/viikko3/Viikko4/target/
-/Viikko5/Viikko-5-tehtavat/target/
-/Viikko5/Tehtava5-5-copy/target/
-/Viikko4/target/
-/Other java files/target/
-/Viikko 6/Tehtävä-1/nbproject/private/
-Viikko 6/Tehtävä-1/nbproject/project.xml
-Viikko 6/Tehtävä-1/nbproject/project.properties
-Viikko 6/Tehtävä-1/nbproject/genfiles.properties
-Viikko 6/Tehtävä-1/nbproject/build-impl.xml
-Viikko 6/Tehtävä-1/manifest.mf
-Viikko 6/Tehtävä-1/build.xml
-/Viikko 6/Tehtävä-1/build/
+
