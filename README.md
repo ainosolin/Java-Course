@@ -71,4 +71,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Aino Solin - (https://www.linkedin.com/in/ainosolin/)
+[LinkedIn](https://www.linkedin.com/in/ainosolin/)
