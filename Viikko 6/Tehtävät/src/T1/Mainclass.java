@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tehtävä.pkg1;
+package T1;
 
 import java.util.Scanner;
 
