@@ -9,7 +9,7 @@ package T5;
  *
  * @author asoli
  */
-public class Account {
+public abstract class Account {
     
     String accountNumber;
     int accountBalance;
@@ -27,13 +27,13 @@ public class Account {
         return accountBalance;
     }
     
-    protected void addBalance(int c){
-        this.accountBalance += c;
+    protected void addBalance(int m){
+        this.accountBalance += m;
     }
     
-    protected void takeBalance(int c){
-        if (accountBalance >= c & accountBalance > 0){
-            this.accountBalance -= c;
+    protected void takeBalance(int m){
+        if (accountBalance >= m & accountBalance > 0){
+            this.accountBalance -= m;
         }
         else {
             System.out.println("Insufficient funds");
@@ -55,12 +55,13 @@ class DebitAccount extends Account{
 
 class CreditAccount extends Account{
     
-    String aN;
-    int aB;
-    int creditAmt;
+    private String aN;
+    private int aB;
+    private int creditAmt;
     
     CreditAccount(String aN, int aB, int credit) {
         super(aN, aB);
+        creditAmt = credit;
         aB += credit;
     }
     
