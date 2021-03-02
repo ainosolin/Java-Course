@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     TextView infoBox;
-    TextView getInfoBox2;
+    TextView InfoBox2;
     TextView addMoney;
     TextView retMoney;
     TextView curMoney;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         TextView infoBox = (TextView) findViewById(R.id.infoBox);
         infoBox.setText("BOTTLE DISPENSER");
         TextView infoBox2 = (TextView) findViewById(R.id.infoBox2);
-        infoBox.setText("BOTTLE DISPENSER");
+        infoBox2.setText("BOTTLE DISPENSER");
 
         TextView retMoney = (TextView) findViewById(R.id.retMoney);
         TextView addMoney = (TextView) findViewById(R.id.addMoney);
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                seekBar.setProgress(1);
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -70,19 +71,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void returnMoney() {
+        // Get money and set text to infobox
         double change = bottleDisp.returnMoney();
-        String m = String.format("%.2f", change);
-        infoBox.findViewById(R.id.infoBox);
-        infoBox.setText("Klink klink. Money came out! You got " + m + "€ back");
+        TextView infoBox2 = (TextView) findViewById(R.id.infoBox2);
+        String text = String.format("Klink klink. Money came out! You got %.2f back", change);
+        infoBox2.setText(text);
     }
 
     public void addMoney() {
+        // Get the id's of corresponding UI elements
+
         moneySlider = (SeekBar) findViewById(R.id.moneySlider);
+        curMoney = (TextView) findViewById(R.id.curMoney);
         infoBox = (TextView) findViewById(R.id.infoBox);
+
+        // Add money the amt of amt (current slider progress)
+
         bottleDisp.addMoney(amt);
+
+        // Get balance after adding money to machine and set to infobox.
         double curBalance = bottleDisp.getMoney();
-        String text = String.format("Current balance: %.2f€.", curBalance);
-        infoBox.setText(text);
+        String text2 = String.format("Current balance: %.2f€.", curBalance);
+        infoBox.setText(text2);
+
+        // Reset slider progress and set current amount to 1€
+
+        moneySlider.setProgress(0);
+        curMoney.setText("1€");
     }
 
 
