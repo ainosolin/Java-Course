@@ -7,24 +7,18 @@ import android.widget.AdapterView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView infoBox;
     TextView infoBox2;
-    TextView addMoney;
-    TextView retMoney;
     TextView curMoney;
     Spinner spinner;
-    Context context;
-
-
     SeekBar moneySlider;
+    Context context;
     int amt = 0;
     int selecItem;
-
     BottleDispenser bottleDisp;
 
     @Override
@@ -42,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         TextView retMoney = (TextView) findViewById(R.id.retMoney);
         TextView addMoney = (TextView) findViewById(R.id.addMoney);
+        TextView buyButton = (TextView) findViewById(R.id.buyButton);
+        TextView menuButton = (TextView) findViewById(R.id.menuButton);
+        TextView stockButton = (TextView) findViewById(R.id.reStock);
+        TextView receiptButton = (TextView) findViewById(R.id.receiptButton);
 
         SeekBar moneySlider = (SeekBar) findViewById(R.id.moneySlider);
         TextView curMoney = (TextView) findViewById(R.id.curMoney);
@@ -76,6 +74,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buyBottle(selecItem);
+            }
+        });
+
+        stockButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reStock();
+            }
+        });
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayMenu();
+            }
+        });
+
+        receiptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottleDisp.saveReceipt(infoBox2);
+                }
+        });
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -88,6 +115,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void displayMenu() {
+        infoBox2 = (TextView) findViewById(R.id.infoBox2);
+        bottleDisp.listBottles(infoBox2);
+    }
+
+    private void reStock() {
+        infoBox2 = (TextView) findViewById(R.id.infoBox2);
+        bottleDisp.fillDisp(infoBox2);
     }
 
     private void returnMoney() {
@@ -104,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             infoBox = (TextView) findViewById(R.id.infoBox);
             double curBalance = bottleDisp.getMoney();
             String text2 = String.format("Current balance: %.2f€.", curBalance);
-            infoBox.append(text2);
+            infoBox.setText(text2);
         }
     }
 
@@ -128,10 +166,10 @@ public class MainActivity extends AppCompatActivity {
         
         moneySlider.setProgress(0);
         curMoney.setText("0€");
-
-        infoBox2 = (TextView) findViewById(R.id.infoBox2);
-        bottleDisp.listBottles(infoBox2);
     }
 
+    private void buyBottle(int selecItem) {
+        bottleDisp.buyBottle(infoBox, infoBox2, selecItem);
+        }
 
 }
