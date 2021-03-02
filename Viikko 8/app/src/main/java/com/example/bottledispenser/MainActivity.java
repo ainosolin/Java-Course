@@ -1,8 +1,11 @@
 package com.example.bottledispenser;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,13 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     TextView infoBox;
-    TextView InfoBox2;
+    TextView infoBox2;
     TextView addMoney;
     TextView retMoney;
     TextView curMoney;
+    Spinner spinner;
+    Context context;
+
 
     SeekBar moneySlider;
     int amt = 0;
+    int selecItem;
 
     BottleDispenser bottleDisp;
 
@@ -25,12 +32,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottleDisp = BottleDispenser.getInstance();
+        context = getApplicationContext();
+        spinner = findViewById(R.id.spinner);
+
+        bottleDisp = BottleDispenser.getInstance(context, spinner);
 
         TextView infoBox = (TextView) findViewById(R.id.infoBox);
         infoBox.setText("BOTTLE DISPENSER");
-        TextView infoBox2 = (TextView) findViewById(R.id.infoBox2);
-        infoBox2.setText("BOTTLE DISPENSER");
 
         TextView retMoney = (TextView) findViewById(R.id.retMoney);
         TextView addMoney = (TextView) findViewById(R.id.addMoney);
@@ -45,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                seekBar.setProgress(1);
+
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -68,14 +76,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selecItem = spinner.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void returnMoney() {
         // Get money and set text to infobox
         double change = bottleDisp.returnMoney();
-        TextView infoBox2 = (TextView) findViewById(R.id.infoBox2);
-        String text = String.format("Klink klink. Money came out! You got %.2f back", change);
-        infoBox2.setText(text);
+        infoBox2 = (TextView) findViewById(R.id.infoBox2);
+        if (change == 0){
+            String text = "No money to give! Add money to get it back...";
+            infoBox2.setText(text);
+        } else {
+            String text = String.format("Klink klink. Money came out! You got %.2f back", change);
+            infoBox2.setText(text);
+
+            infoBox = (TextView) findViewById(R.id.infoBox);
+            double curBalance = bottleDisp.getMoney();
+            String text2 = String.format("Current balance: %.2f€.", curBalance);
+            infoBox.append(text2);
+        }
     }
 
     public void addMoney() {
@@ -94,10 +124,13 @@ public class MainActivity extends AppCompatActivity {
         String text2 = String.format("Current balance: %.2f€.", curBalance);
         infoBox.setText(text2);
 
-        // Reset slider progress and set current amount to 1€
-
+        // Reset slider progress and set current amount to 0€
+        
         moneySlider.setProgress(0);
-        curMoney.setText("1€");
+        curMoney.setText("0€");
+
+        infoBox2 = (TextView) findViewById(R.id.infoBox2);
+        bottleDisp.listBottles(infoBox2);
     }
 
 

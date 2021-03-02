@@ -21,7 +21,10 @@ public class Bottle {
         this.bottle_size = bosize;
         this.bottle_price = boprice;
     }
-
+    @Override
+    public String toString() {
+        return name;
+    }
     public String getName(){
         return name;
     }
