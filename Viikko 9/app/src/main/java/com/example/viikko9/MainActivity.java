@@ -42,25 +42,18 @@ public class MainActivity extends AppCompatActivity {
     Spinner valJalkeen;
     Spinner valElo;
     Button katsoButton;
-    int selecItem;
     int valinta;
-    int valintaEnnen;
-    int valintaJalkeen;
     String tId;
     String pvm;
     TextView text;
     Context context;
     ArrayAdapter<String> pvmAdapter;
     ArrayAdapter<String> theatreAdapter;
-    ArrayAdapter<String> valEnnenAdapter;
-    ArrayAdapter<String> valJalkeenAdapter;
     ArrayList<Theatre> theatreList = new ArrayList<Theatre>();
     ArrayList<String> IDList = new ArrayList<String>();
     ArrayList<Show> showsList = new ArrayList<Show>();
     ArrayList<String> imgList = new ArrayList<>();
     RecyclerView recyclerView;
-    String ennenKello;
-    String jalkeenKello;
 
 
     @Override
